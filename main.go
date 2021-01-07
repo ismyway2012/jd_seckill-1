@@ -5,12 +5,17 @@ import (
 	"github.com/unknwon/goconfig"
 	"github.com/ztino/jd_seckill/cmd"
 	"github.com/ztino/jd_seckill/common"
-	"log"
+	"github.com/ztino/jd_seckill/log"
 	"os"
 	"runtime"
 )
 
 func init()  {
+	//日志初始化
+	if !common.IsDir("./logs/") {
+		_ = os.Mkdir("./logs/", 0777)
+	}
+
 	//客户端设置初始化
 	common.Client=httpc.NewHttpClient()
 	common.CookieJar=httpc.NewCookieJar()
